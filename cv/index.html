@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdullah Gaber – Frontend Developer CV</title>
+  <meta name="description" content="Abdullah Gaber – Frontend Developer skilled in HTML, CSS, JavaScript, and React. Based in Zefta, Gharbia Governorate, Egypt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-dark:       #0d0f1a;
+      --bg-card:       #141728;
+      --bg-sidebar:    #0f1120;
+      --accent:        #6c63ff;
+      --accent-soft:   #8b85ff;
+      --accent-glow:   rgba(108, 99, 255, 0.35);
+      --teal:          #00d4aa;
+      --teal-glow:     rgba(0, 212, 170, 0.25);
+      --text-primary:  #f0f2ff;
+      --text-secondary:#9ba3c7;
+      --text-muted:    #5e6489;
+      --border:        rgba(108, 99, 255, 0.2);
+      --border-subtle: rgba(255,255,255,0.06);
+      --radius:        16px;
+      --radius-sm:     10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Page wrapper ─── */
+    .page {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: var(--bg-card);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 0 80px rgba(108,99,255,0.12),
+        0 30px 60px rgba(0,0,0,0.5);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+    }
+
+    /* ─── Sidebar ─── */
+    .sidebar {
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      padding: 44px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── Photo ─── */
+    .photo-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo-ring {
+      width: 148px;
+      height: 148px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+      padding: 3px;
+      box-shadow:
+        0 0 0 6px rgba(108,99,255,0.15),
+        0 0 40px var(--accent-glow),
+        0 8px 32px rgba(0,0,0,0.4);
+      animation: photoPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes photoPulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(108,99,255,0.15), 0 0 40px var(--accent-glow), 0 8px 32px rgba(0,0,0,0.4); }
+      50%       { box-shadow: 0 0 0 8px rgba(108,99,255,0.25), 0 0 60px rgba(108,99,255,0.5), 0 8px 32px rgba(0,0,0,0.4); }
+    }
+
+    .photo-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .name-title { text-align: center; }
+
+    .name-title h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.3px;
+    }
+
+    .name-title .role {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent-soft);
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 20px;
+      padding: 3px 12px;
+      display: inline-block;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ─── Sidebar Section ─── */
+    .sbar-section { position: relative; z-index: 1; }
+
+    .sbar-section h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sbar-section h3::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(108,99,255,0.4) 0%, transparent 100%);
+    }
+
+    /* ─── Contact items ─── */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-list li .icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .contact-list li:hover .icon {
+      background: rgba(108,99,255,0.25);
+      border-color: var(--accent-soft);
+    }
+
+    /* ─── Skills ─── */
+    .skills-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .skill-item { display: flex; flex-direction: column; gap: 6px; }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .skill-bar {
+      height: 5px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      position: relative;
+      animation: fillBar 1.4s cubic-bezier(0.4,0,0.2,1) both;
+    }
+
+    @keyframes fillBar {
+      from { width: 0 !important; }
+    }
+
+    /* ─── Tags ─── */
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--teal);
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .tag:hover {
+      background: rgba(0,212,170,0.2);
+      transform: translateY(-1px);
+    }
+
+    /* ─── Main Content ─── */
+    .main {
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 38px;
+    }
+
+    /* ─── Section headings ─── */
+    .section { display: flex; flex-direction: column; gap: 18px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(108,99,255,0.3), rgba(0,212,170,0.15));
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.2px;
+    }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+      margin-top: 2px;
+    }
+
+    /* ─── Summary text ─── */
+    .summary-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      padding: 18px 20px;
+      background: rgba(108,99,255,0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    /* ─── Education card ─── */
+    .edu-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .edu-card:hover {
+      border-color: var(--border);
+      background: rgba(108,99,255,0.05);
+    }
+
+    .edu-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .edu-info h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .edu-info p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 3px;
+    }
+
+    .edu-badge {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-soft);
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    /* ─── Traits ─── */
+    .traits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .trait-card {
+      padding: 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      transition: border-color 0.3s, transform 0.25s, background 0.3s;
+    }
+
+    .trait-card:hover {
+      border-color: var(--border);
+      transform: translateY(-3px);
+      background: rgba(108,99,255,0.06);
+    }
+
+    .trait-card .trait-icon { font-size: 1.4rem; margin-bottom: 6px; }
+
+    .trait-card p {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 720px) {
+      .page {
+        grid-template-columns: 1fr;
+        margin: 0;
+        border-radius: 0;
+        border: none;
+        width: 100%;
+      }
+
+      .sidebar {
+        padding: 40px 20px;
+        align-items: center;
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .photo-wrapper {
+        align-items: center;
+        width: 100%;
+      }
+
+      .sbar-section {
+        text-align: left;
+        width: 100%;
+      }
+
+      .sbar-section h3 {
+        justify-content: flex-start;
+      }
+
+      .contact-list li {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .skills-list {
+        align-items: stretch;
+        text-align: left;
+      }
+
+      .tags {
+        justify-content: center;
+      }
+
+      .main {
+        padding: 32px 20px;
+      }
+
+      .traits-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 400px) {
+      .sidebar {
+        padding: 30px 15px;
+      }
+
+      .photo-ring {
+        width: 130px;
+        height: 130px;
+      }
+
+      .name-title h1 {
+        font-size: 1.2rem;
+      }
+
+      .main {
+        padding: 24px 15px;
+        gap: 24px;
+      }
+
+      .section-header h2 {
+        font-size: 0.95rem;
+      }
+
+      .summary-text {
+        font-size: 0.85rem;
+        padding: 15px;
+      }
+
+      .traits-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .trait-card {
+        padding: 12px;
+      }
+
+      .edu-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .edu-badge {
+        margin-left: 0;
+        align-self: center;
+      }
+
+      .tag {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+      }
+
+      .skill-label {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page" role="main">
+
+    <!-- ════════ SIDEBAR ════════ -->
+    <aside class="sidebar" aria-label="Personal info and skills">
+
+      <!-- Photo -->
+      <div class="photo-wrapper">
+        <div class="photo-ring" id="profile-photo-ring">
+          <img
+            src="WhatsApp Image 2026-04-02 at 11.24.06 PM.jpeg"
+            alt="Abdullah Gaber – Frontend Developer"
+          />
+        </div>
+        <div class="name-title">
+          <h1>Abdullah Gaber</h1>
+          <span class="role">Frontend Developer</span>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="sbar-section" id="contact-section">
+        <h3>Contact</h3>
+        <ul class="contact-list">
+          <li>
+            <span class="icon">📍</span>
+            <span>Zefta, Gharbia, Egypt</span>
+          </li>
+          <li>
+            <span class="icon">📱</span>
+            <span>01004216774</span>
+          </li>
+          <li>
+            <span class="icon">💼</span>
+            <span>01555621371</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Skills bar -->
+      <div class="sbar-section" id="skills-section">
+        <h3>Skills</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-label"><span>HTML &amp; CSS</span><span>100%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>JavaScript</span><span>50%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>React</span><span>50%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Bootstrap</span><span>100%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Next.js</span><span>50%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Responsive Design</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Performance / UX</span><span>50%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech tags -->
+      <div class="sbar-section" id="tech-section">
+        <h3>Technologies</h3>
+        <div class="tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+
+      <!-- AI Tools -->
+      <div class="sbar-section" id="ai-section">
+        <h3>AI Tools</h3>
+        <div class="tags">
+          <span class="tag">Antigravity AI</span>
+          <span class="tag">Cursor AI</span>
+          <span class="tag">AI-Assisted Dev</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ════════ MAIN ════════ -->
+    <div class="main">
+
+      <!-- Summary -->
+      <section class="section" id="summary-section" aria-labelledby="summary-heading">
+        <div class="section-header">
+          <div class="section-icon">🧑‍💻</div>
+          <h2 id="summary-heading">Professional Summary</h2>
+          <div class="section-divider"></div>
+        </div>
+        <p class="summary-text">
+          Frontend Developer with hands-on experience building responsive and user-friendly web interfaces
+          using modern technologies. Skilled in <strong>HTML, CSS, JavaScript,</strong> and
+          <strong>React</strong>, with a strong focus on performance, clean design, and user experience.
+          Able to transform designs into high-quality, scalable code and optimize applications for speed.
+        </p>
+      </section>
+
+      <!-- Education -->
+      <section class="section" id="education-section" aria-labelledby="edu-heading">
+        <div class="section-header">
+          <div class="section-icon">🎓</div>
+          <h2 id="edu-heading">Education</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🏛️</div>
+          <div class="edu-info">
+            <h4>Higher Institute of Management – HIM</h4>
+            <p>Accounting &nbsp;|&nbsp; 4th Year</p>
+          </div>
+          <span class="edu-badge">Senior Student</span>
+        </div>
+      </section>
+
+      <!-- Technical Skills (main) -->
+      <section class="section" id="main-skills-section" aria-labelledby="skills-heading">
+        <div class="section-header">
+          <div class="section-icon">🛠️</div>
+          <h2 id="skills-heading">Core Skills</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="tags" style="gap:8px;">
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">HTML5</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">CSS3</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">JavaScript (ES6+)</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">React.js</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Bootstrap</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Next.js</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Responsive Design</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Performance Optimization</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">UI/UX Principles</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Antigravity AI</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Cursor AI</span>
+          <span class="tag" style="font-size:0.8rem;padding:6px 14px;">Cross-Browser Compatibility</span>
+        </div>
+      </section>
+
+      <section class="section" id="ai-workflow-section" aria-labelledby="ai-workflow-heading">
+        <div class="section-header">
+          <div class="section-icon">🤖</div>
+          <h2 id="ai-workflow-heading">AI Tools &amp; Workflow</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="summary-text" style="background: rgba(0, 212, 170, 0.05); border-left-color: var(--teal);">
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+            <li style="display: flex; gap: 10px;">
+              <span style="color: var(--teal);">•</span>
+              <span>Experienced in using AI tools (e.g., <strong>Cursor AI</strong>) to assist in coding and UI development.</span>
+            </li>
+            <li style="display: flex; gap: 10px;">
+              <span style="color: var(--teal);">•</span>
+              <span>Able to clearly communicate project requirements to AI tools to generate faster and more accurate results.</span>
+            </li>
+            <li style="display: flex; gap: 10px;">
+              <span style="color: var(--teal);">•</span>
+              <span>Familiar with AI-assisted development workflow to improve productivity, learning, and project building speed.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="backend-section" aria-labelledby="backend-heading">
+        <div class="section-header">
+          <div class="section-icon">🖥️</div>
+          <h2 id="backend-heading">Backend Understanding</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="summary-text" style="background: rgba(108, 99, 255, 0.05); border-left-color: var(--accent);">
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+            <li style="display: flex; gap: 10px;">
+              <span style="color: var(--accent);">•</span>
+              <span>Basic understanding of backend logic and how web applications work.</span>
+            </li>
+            <li style="display: flex; gap: 10px;">
+              <span style="color: var(--accent);">•</span>
+              <span>Familiar with how backend systems operate (such as authentication, databases, and server-side communication).</span>
+            </li>
+            <li style="display: flex; gap: 10px;">
+              <span style="color: var(--accent);">•</span>
+              <span>Able to work with backend concepts using AI tools to generate, run, and understand backend code.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Additional Info -->
+      <section class="section" id="additional-section" aria-labelledby="additional-heading">
+        <div class="section-header">
+          <div class="section-icon">📌</div>
+          <h2 id="additional-heading">Additional Information</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="traits-grid">
+          <div class="trait-card">
+            <div class="trait-icon">⚡</div>
+            <p>Fast Learner</p>
+          </div>
+          <div class="trait-card">
+            <div class="trait-icon">🧩</div>
+            <p>Problem Solver</p>
+          </div>
+          <div class="trait-card">
+            <div class="trait-icon">❤️‍🔥</div>
+            <p>Passionate Developer</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- end .main -->
+
+  </div>
+  <!-- end .page -->
+
+</body>
+</html>
